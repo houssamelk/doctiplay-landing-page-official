@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Doctiplay | Simulateur Médical IA</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;family=Inter:wght@300;400;600;800;900&amp;family=Cairo:wght@400;500;700&amp;display=swap"
+        rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            DEFAULT: "#00d8ff",
+                            glow: "#00f2ff",
+                            dark: "#0891b2"
+                        },
+                        secondary: "#0f172a",
+                        darkest: "#020617",
+                        accent: "#ffffff",
+                        danger: "#ff4d4d",
+                        surface: "rgba(255, 255, 255, 0.7)",
+                    },
+                    fontFamily: {
+                        display: ["JetBrains Mono", "monospace"],
+                        body: ["Inter", "Cairo", "sans-serif"],
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-out forwards',
+                        'fade-in-up': 'fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'slide-in-right': 'slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+                        'pulse-slow': 'pulse 6s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'scanline': 'scanline 8s linear infinite',
+                        'glow-pulse': 'glowPulse 2s ease-in-out infinite',
+                        'spin-slow': 'spin 12s linear infinite',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        },
+                        slideInRight: {
+                            '0%': { transform: 'translateX(100%)' },
+                            '100%': { transform: 'translateX(0)' },
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '50%': { transform: 'translateY(-15px) rotate(1deg)' },
+                        },
+                        scanline: {
+                            '0%': { transform: 'translateY(-100%)' },
+                            '100%': { transform: 'translateY(100%)' },
+                        },
+                        glowPulse: {
+                            '0%, 100%': { opacity: '0.4', filter: 'brightness(1)' },
+                            '50%': { opacity: '0.8', filter: 'brightness(1.5)' },
+                        }
+                    }
+                },
+            },
+        };
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', 'Cairo', sans-serif;
+            background-color: #020617;
+            color: #f8fafc;
+            overflow-x: hidden;
+            /* Perspective removed to ensure position:fixed works correctly for Navbar */
+        }
+
+        .tech-grid {
+            position: relative;
+            background-color: #020617;
+            background-image:
+                linear-gradient(to right, rgba(0, 216, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0, 216, 255, 0.03) 1px, transparent 1px);
+            background-size: 80px 80px;
+        }
+
+        .tech-grid::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(2, 6, 23, 0.98) 100%);
+            pointer-events: none;
+        }
+
+        .neon-text-subtle {
+            text-shadow: 0 0 10px rgba(0, 216, 255, 0.2);
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .glass-dark {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: transform, opacity;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .perspective-monitor {
+            perspective: 2000px;
+        }
+
+        .rotate-3d-soft {
+            transform: rotateX(5deg) rotateY(-5deg);
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .rotate-3d-soft:hover {
+            transform: rotateX(0deg) rotateY(0deg) scale(1.05);
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .abstract-wave {
+            position: absolute;
+            width: 150%;
+            height: 400px;
+            background: linear-gradient(90deg, transparent, rgba(0, 216, 255, 0.05), transparent);
+            transform: rotate(-15deg);
+            filter: blur(80px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes ecg-move {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        .ecg-line {
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(90deg,
+                    transparent 0%,
+                    rgba(0, 216, 255, 0.2) 40%,
+                    #00d8ff 48%,
+                    #00d8ff 52%,
+                    rgba(0, 216, 255, 0.2) 60%,
+                    transparent 100%);
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L40,25 L45,10 L50,40 L55,15 L60,25 L200,25' fill='none' stroke='white' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+            -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 50' preserveAspectRatio='none'%3E%3Cpath d='M0,25 L40,25 L45,10 L50,40 L55,15 L60,25 L200,25' fill='none' stroke='white' stroke-width='2' vector-effect='non-scaling-stroke'/%3E%3C/svg%3E");
+            mask-size: 50% 100%;
+            -webkit-mask-size: 50% 100%;
+            mask-repeat: repeat-x;
+            -webkit-mask-repeat: repeat-x;
+            animation: ecg-move 2.5s linear infinite;
+        }
+    </style>
+
+    <link rel="stylesheet" href="/index.css">
+    <script type="importmap">
+{
+  "imports": {
+    "lucide-react": "https://esm.sh/lucide-react@^0.561.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/doctiplay-landing-page-official/assets/index-D8oWSEMk.js"></script>
+</head>
+
+<body class="tech-grid">
+    <div id="root"></div>
+</body>
+
+</html>
