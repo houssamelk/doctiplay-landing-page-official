@@ -3,6 +3,7 @@ import { Handshake, ArrowUpRight } from 'lucide-react';
 import { useLanguage } from '../contexts/LanguageContext';
 import fmpLogo from '../src/assets/logo-fmp.png';
 import chuLogo from '../src/assets/logo-chu.jpg';
+import doctifyLogo from '../src/assets/logo-doctify.png';
 
 interface PartnershipProps {
   onOpenDrawer: () => void;
@@ -23,6 +24,12 @@ const Partnership: React.FC<PartnershipProps> = ({ onOpenDrawer }) => {
       logo: chuLogo,
       isPrimary: true,
       url: "http://www.chisrabat.ma/"
+    },
+    {
+      name: "Doctify IA",
+      logo: doctifyLogo,
+      isPrimary: true,
+      url: "https://www.doctifyhealth.com/"
     },
   ];
 
