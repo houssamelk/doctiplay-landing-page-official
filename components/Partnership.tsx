@@ -4,6 +4,7 @@ import { useLanguage } from '../contexts/LanguageContext';
 import fmpLogo from '../src/assets/logo-fmp.png';
 import chuLogo from '../src/assets/logo-chu.jpg';
 import doctifyLogo from '../src/assets/logo-doctify.png';
+import moroccoSimLogo from '../src/assets/logo-moroccosim.jpg';
 
 interface PartnershipProps {
   onOpenDrawer: () => void;
@@ -30,6 +31,12 @@ const Partnership: React.FC<PartnershipProps> = ({ onOpenDrawer }) => {
       logo: doctifyLogo,
       isPrimary: true,
       url: "https://www.doctifyhealth.com/"
+    },
+    {
+      name: "Société Marocaine de Simulation en Santé",
+      logo: moroccoSimLogo,
+      isPrimary: true,
+      url: "https://www.moroccosim.org/"
     },
   ];
 
