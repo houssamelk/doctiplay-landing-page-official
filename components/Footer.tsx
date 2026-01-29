@@ -13,12 +13,12 @@ const Footer: React.FC<FooterProps> = ({ onOpenPartnership, onOpenContact }) => 
   const { t } = useLanguage();
 
   return (
-    <footer className="relative bg-darkest pt-32 pb-20 overflow-hidden">
+    <footer className="relative bg-darkest pt-20 sm:pt-32 pb-16 sm:pb-20 overflow-hidden">
       {/* Decorative background element */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent"></div>
 
       <div className="max-w-7xl mx-auto px-8 relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-16 mb-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-10 sm:gap-16 mb-16 sm:mb-24">
 
           {/* Brand & Tagline */}
           <div className="flex flex-col items-center lg:items-start text-center lg:text-left space-y-8 max-w-md">

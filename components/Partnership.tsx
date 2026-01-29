@@ -41,9 +41,9 @@ const Partnership: React.FC<PartnershipProps> = ({ onOpenDrawer }) => {
   ];
 
   return (
-    <section id="partenaires" className="py-24 relative overflow-hidden bg-white/40">
+    <section id="partenaires" className="py-16 sm:py-24 relative overflow-hidden bg-white/40">
       <div className="px-6 mx-auto max-w-7xl relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 mb-16 reveal">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 sm:gap-12 mb-12 sm:mb-16 reveal">
           <div className="max-w-xl text-center lg:text-left rtl:lg:text-right">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 mb-4">
               <Handshake className="w-3.5 h-3.5 text-primary" />

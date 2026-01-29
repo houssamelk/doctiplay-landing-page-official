@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
             <div className="w-8 h-8 sm:w-10 sm:h-10 transform group-hover:scale-110 transition-transform">
               <Logo className="w-full h-full" showPulse={true} />
             </div>
-            <span className="hidden md:block font-display font-black text-white tracking-tighter text-lg">
+            <span className="block font-display font-black text-white tracking-tighter text-sm sm:text-lg">
               DOCTI<span className="text-primary">PLAY</span>
             </span>
           </a>
