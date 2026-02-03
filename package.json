@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "install:ppt": "cd ppt-deck && npm install",
     "build:ppt": "cd ppt-deck && npm run build",
-    "predeploy": "npm run install:ppt && npm run build:ppt && npm run build && mkdir -p dist/ppt && cp -r ppt-deck/dist/* dist/ppt/",
+    "predeploy": "npm run install:ppt && npm run build:ppt && npm run build && mkdir -p dist/pitch && cp -r ppt-deck/dist/* dist/pitch/",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {

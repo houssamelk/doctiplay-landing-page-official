@@ -1,9 +1,9 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-    base: '/ppt/',
+    base: '/pitch/',
     build: {
         outDir: 'dist',
-        emptyOutDir: true, // Clean docs before build
+        emptyOutDir: true,
     }
 })
