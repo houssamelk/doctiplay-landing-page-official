@@ -95,7 +95,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPartnership, onOpenComingSoon }) => {
         {/* Primary CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8 mb-12 sm:mb-24 animate-fade-in-up [animation-delay:300ms] w-full max-w-sm sm:max-w-none">
           <a
-            href="https://smaliw05-create.github.io/ppt_doctiplay/"
+            href="/ppt/"
             target="_blank"
             rel="noopener noreferrer"
             className="group w-full sm:w-auto px-8 sm:px-12 py-4 sm:py-5 bg-white text-slate-950 rounded-full font-display font-black text-[12px] sm:text-sm tracking-widest uppercase flex items-center justify-center gap-4 hover:bg-primary hover:text-white transition-all shadow-[0_20px_50px_rgba(0,216,255,0.2)] hover:-translate-y-1 cursor-pointer"

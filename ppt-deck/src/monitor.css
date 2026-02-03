@@ -1,0 +1,253 @@
+/* --- LIVE MONITOR COMPONENT --- */
+
+.live-monitor {
+    position: absolute;
+    /* Aligned with Technical Log left edge, covering the old curve */
+    top: 13.5%;
+    left: 8.8%;
+    width: 44.8%;
+    height: 35.2%;
+    background: #000;
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    font-family: 'IBM Plex Mono', monospace;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+    border: 1px solid #333;
+}
+
+/* Header */
+.scope-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 6px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.45rem;
+    color: #aaa;
+    flex-shrink: 0;
+}
+
+.scope-time {
+    color: #0ff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+}
+
+.live-badge-anim {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.live-badge-anim span {
+    color: #ff0000;
+    font-size: 1.2em;
+    animation: blink 2s infinite;
+    display: inline-block;
+    margin-top: -1px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Content Layout */
+.scope-content {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+}
+
+.scope-graphs {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #333;
+}
+
+.graph-row {
+    flex: 1;
+    /* Both graphs take equal height */
+    position: relative;
+    border-bottom: 1px solid #222;
+    overflow: hidden;
+    /* Removed display: flex to let canvas fill block naturally */
+}
+
+.graph-row:last-child {
+    border-bottom: none;
+}
+
+.graph-label {
+    position: absolute;
+    top: 4px;
+    left: 6px;
+    font-size: 0.5rem;
+    font-weight: bold;
+    z-index: 5;
+    pointer-events: none;
+}
+
+canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Values */
+.scope-values {
+    width: 35%;
+    /* Fixed width for values column */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 2px 10px;
+    background: #060606;
+}
+
+.val-box {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin: 2px 0;
+}
+
+.val-label {
+    font-size: 0.5rem;
+    opacity: 0.8;
+    margin-bottom: -2px;
+    text-transform: uppercase;
+}
+
+.val-num {
+    font-size: 1.4rem;
+    /* Adjusted for space */
+    font-weight: 700;
+    line-height: 0.9;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.val-sub {
+    font-size: 0.8rem;
+    opacity: 0.8;
+    margin-top: -2px;
+}
+
+/* Colors */
+.green-text {
+    color: #0f0;
+    text-shadow: 0 0 5px rgba(0, 255, 0, 0.4);
+}
+
+.cyan-text {
+    color: #0ff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.4);
+}
+
+.red-text {
+    color: #f33;
+    text-shadow: 0 0 5px rgba(255, 50, 50, 0.4);
+}
+
+/* Actions */
+.scope-actions {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    display: flex;
+    gap: 4px;
+    z-index: 30;
+}
+
+.scope-actions button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.45rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.2s;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.scope-actions button:hover {
+    background: rgba(0, 242, 255, 0.2);
+    border-color: rgba(0, 242, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+/* Toast */
+.scope-toast {
+    position: absolute;
+    bottom: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 10, 20, 0.9);
+    border: 1px solid rgba(0, 242, 255, 0.4);
+    box-shadow: 0 0 15px rgba(0, 242, 255, 0.2);
+    color: #0ff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.55rem;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 40;
+    white-space: nowrap;
+}
+
+.scope-toast.show {
+    opacity: 1;
+}
+
+/* Animation classes */
+.pulse-anim {
+    animation: txt-pulse 0.3s ease-out;
+}
+
+@keyframes txt-pulse {
+    0% {
+        transform: scale(1);
+        text-shadow: 0 0 5px currentColor;
+    }
+
+    50% {
+        transform: scale(1.3);
+        text-shadow: 0 0 20px currentColor;
+    }
+
+    100% {
+        transform: scale(1);
+        text-shadow: 0 0 5px currentColor;
+    }
+}
+
+
+/* Print Handling */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+}
