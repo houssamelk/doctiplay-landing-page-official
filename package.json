@@ -7,9 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "install:ppt": "cd ppt-deck && npm install",
-    "build:ppt": "cd ppt-deck && npm run build",
-    "predeploy": "npm run install:ppt && npm run build:ppt && rm -rf public/pitch public/slides && mkdir -p public/pitch && cp -r ppt-deck/dist/* public/pitch/ && npm run build && touch dist/.nojekyll",
+    "predeploy": "npm run build && touch dist/.nojekyll",
     "deploy": "gh-pages -d dist -t"
   },
   "dependencies": {
@@ -17,7 +15,8 @@
     "@google/genai": "latest",
     "lucide-react": "^0.561.0",
     "react": "^19.2.3",
-    "react-dom": "^19.2.3"
+    "react-dom": "^19.2.3",
+    "react-router-dom": "^7.13.0"
   },
   "devDependencies": {
     "@types/node": "^22.14.0",
