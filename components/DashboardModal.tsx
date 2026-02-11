@@ -37,10 +37,10 @@ const DashboardModal: React.FC<DashboardModalProps> = ({ isOpen, onClose }) => {
         setLogs(prev => [...prev, `>> [ALERT] MODE: ${selectedMode.toUpperCase()} | CAT: ${selectedCat.toUpperCase()}`]);
 
         // Simulate loading scenario
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 800));
         setLogs(prev => [...prev, ">> [SCENARIO] Patient: Male, 45y. Sudden onset of chest pain.", ">> [VITAL] HR: 115 bpm | SpO2: 92% | BP: 145/90"]);
 
-        await new Promise(resolve => setTimeout(resolve, 1500));
+        await new Promise(resolve => setTimeout(resolve, 800));
         setIsLoading(false);
         // In a real app, this would navigate to the game interface
         window.location.href = 'https://app.doctiplay.com'; // Redirect to official app
