@@ -12,7 +12,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPartnership }) => {
   const { t } = useLanguage();
 
   return (
-    <section id="simulation" className="relative pt-32 sm:pt-44 pb-16 sm:pb-32 overflow-hidden min-h-[90vh] flex flex-col items-center justify-center">
+    <section id="simulation" className="relative pt-20 sm:pt-44 pb-12 sm:pb-32 overflow-hidden min-h-[90vh] flex flex-col items-center justify-center">
       {/* Background Ambience */}
       <div className="abstract-wave top-[10%] -left-[20%] opacity-50 sm:opacity-100"></div>
       <div className="abstract-wave bottom-[10%] -right-[20%] rotate-[165deg] opacity-50 sm:opacity-100"></div>
@@ -23,7 +23,7 @@ const Hero: React.FC<HeroProps> = ({ onOpenPartnership }) => {
       />
 
       {/* Centered Content Wrapper */}
-      <div className="relative z-10 px-4 max-w-[95vw] mx-auto w-full flex flex-col items-center text-center mb-12 sm:mb-24">
+      <div className="relative z-10 px-4 max-w-[95vw] mx-auto w-full flex flex-col items-center text-center mb-8 sm:mb-24">
 
         {/* Subtle Badge */}
         <div className="inline-flex items-center gap-2 px-4 sm:px-6 py-1.5 sm:py-2 rounded-full border border-primary/20 bg-primary/5 mb-6 sm:mb-10 animate-fade-in-up">
@@ -35,10 +35,10 @@ const Hero: React.FC<HeroProps> = ({ onOpenPartnership }) => {
 
         {/* Main Headline */}
         <h1 className="mb-6 sm:mb-10 animate-fade-in-up [animation-delay:100ms] w-full flex flex-col items-center">
-          <span className="block font-display font-bold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-2 sm:mb-4 leading-tight antialiased tracking-tight">
+          <span className="block font-display font-bold text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white mb-2 sm:mb-4 leading-tight antialiased tracking-tight">
             {t.hero.headline}
           </span>
-          <span className="block font-body font-black text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.8rem] text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary leading-[1.1] sm:leading-[1] pb-2 sm:pb-4 antialiased tracking-tighter max-w-full px-2">
+          <span className="block font-body font-black text-3xl sm:text-6xl md:text-7xl lg:text-[5.5rem] xl:text-[6.8rem] text-transparent bg-clip-text bg-gradient-to-r from-primary via-white to-primary leading-[1.1] sm:leading-[1] pb-2 sm:pb-4 antialiased tracking-tighter max-w-full px-2 break-words">
             {t.hero.headline_highlight}
           </span>
         </h1>
