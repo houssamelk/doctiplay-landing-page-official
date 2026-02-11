@@ -5,10 +5,9 @@ import DashboardModal from './DashboardModal';
 
 interface HeroProps {
   onOpenPartnership: () => void;
-  onOpenComingSoon: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onOpenPartnership, onOpenComingSoon }) => {
+const Hero: React.FC<HeroProps> = ({ onOpenPartnership }) => {
   const [isDashboardOpen, setIsDashboardOpen] = useState(false);
   const { t } = useLanguage();
 
@@ -57,13 +56,6 @@ const Hero: React.FC<HeroProps> = ({ onOpenPartnership, onOpenComingSoon }) => {
           >
             {t.hero_extended.btn_command}
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-          </button>
-
-          <button
-            onClick={onOpenComingSoon}
-            className="w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-full border border-white/20 text-white font-display font-black text-[12px] sm:text-sm tracking-widest uppercase hover:bg-white/10 transition-all text-center"
-          >
-            {t.hero.btn_tutorial}
           </button>
         </div>
       </div>

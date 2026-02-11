@@ -65,7 +65,6 @@ const AppContent: React.FC = () => {
       <main className="flex-grow relative z-10">
         <Hero
           onOpenPartnership={() => setIsPartnershipOpen(true)}
-          onOpenComingSoon={() => setIsComingSoonOpen(true)}
         />
         <Features />
 
